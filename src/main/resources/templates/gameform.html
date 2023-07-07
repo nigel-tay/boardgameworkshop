@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Form</title>
+</head>
+<body>
+    <div th:object="${bgame}">
+        <h3>Game details:</h3>
+        <div><strong>Game ID: </strong><span th:text="*{gid}"></span></div>
+        <div><strong>Game Name: </strong><span th:text="*{name}"></span></div>
+        <div><strong>Year Published: </strong><span th:text="*{year}"></span></div>
+        <div><strong>Ranking: </strong><span th:text="*{ranking}"></span></div>
+    </div>
+    <div>
+        <h3>Enter comments:</h3>
+        <h4>For Game ID: <span th:text="${bgame.gid}"></span></h4>
+        <form action="/comment" method="POST" th:object="${gcomment}">
+            <div>Enter Username: <input type="text" name="user"></div>
+            <div>Enter Rating (1 - 10): <input type="range" name="rating" min="1" max="10"></div>
+            <div>Enter Comments: <input type="text" name="cText"></div>
+            <input type="hidden" name="gid" data-th-value="${gId}">
+            <input type="submit" value="Post"/>
+        </form>
+    </div>
+</body>
+</html>
